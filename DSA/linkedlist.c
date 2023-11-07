@@ -6,11 +6,12 @@ struct node{
     struct node *next;
 };
 
-struct node *add;
+    //global variable
 
-void putdata(int n){
+struct node * putdata(int n){
     int value,i;
     struct node *new1, *p;
+    struct node *head;
     for(i=0;i<n;i++){
         printf("Enter the value:");
         scanf("%d",&value);
@@ -18,33 +19,53 @@ void putdata(int n){
         new1->data=value;
         new1->next=NULL;   
         if(i==0){
-            add=new1;
+            head=new1;
         }
         else{
             p->next=new1;
         }
         p=new1;
     }
+    return head;
 }
 
-void getdata(int n){
+void getdata(int n,struct node *head){
     int ans,i=0;
-    struct node *new1,*p;
-    new1=add;
+    struct node *new1;//,*p;
+    new1=head;
     while(i!=n){
         ans=new1->data;
         printf("The value is %d.\n",ans);
         new1=new1->next;
-        p=new1;
+//        p=new1;
         i++;
     }
 }
 
 int main(){
-    int n;
-    printf("Enter the number of terms:");
-    scanf("%d",&n);
-    putdata(n);
-    getdata(n);
+    int n,key,var=0;
+    struct node *head;
+    gift:
+    printf("Enter the key:");
+    scanf("%d",&key);
+    switch(key){
+    	case 1:
+			printf("Enter the number of terms:");
+	    	scanf("%d",&n);
+	    	head=putdata(n);
+	    	break;
+    	case 2:
+    		getdata(n,head);
+			break;
+		case 3:
+			var=1;		
+    		
+	}
+	if (var==0){
+		goto gift;
+	}
+	else{
+		printf("Exit");
+	}
     return 0;
 }
